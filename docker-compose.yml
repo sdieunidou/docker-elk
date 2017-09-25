@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+    elasticsearch:
+        image: elasticsearch
+        volumes:
+            - ./:/symfony
+        ports:
+          - "9200:9200"
+
+    logstash:
+        image: logstash
+        environment:
+            TZ: Europe/Paris
+        ports:
+          - "5044:5044"
+        volumes:
+            - ./docker/logstash:/conf
+        links:
+            - elasticsearch
+        command: logstash -f /conf/logstash.conf
+
+    kibana:
+        image: kibana
+        ports:
+          - "5601:5601"
+        environment:
+            SERVER_NAME: kibana
+            ELASTICSEARCH_URL: http://elasticsearch:9200
+        links:
+            - elasticsearch
+
+    filebeat:
+        build: docker/filebeat
