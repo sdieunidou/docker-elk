@@ -6,5 +6,6 @@ USER root
 
 RUN chown filebeat /usr/share/filebeat/filebeat.yml
 RUN chmod go-w /usr/share/filebeat/filebeat.yml
+RUN chmod 777 -R /var/log/
 
 USER filebeat

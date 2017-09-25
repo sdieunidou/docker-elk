@@ -21,7 +21,7 @@ filebeat.prospectors:
 - type: log
 
   # Change to true to enable this prospector configuration.
-  enabled: false
+  enabled: true
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
@@ -141,9 +141,9 @@ setup.kibana:
 # Multiple outputs may be used.
 
 #-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
+#output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["elasticsearch:9200"]
+ # hosts: ["elasticsearch:9200"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -151,9 +151,9 @@ output.elasticsearch:
   #password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
-#output.logstash:
+output.logstash:
   # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  hosts: ["logstash:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
